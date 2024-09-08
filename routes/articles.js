@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Article = require('./../models/articles');
 
+
 router.get('/new', (req, res) => {
     res.render("articles/new");
 })
 
-// router.get('/test', (req, res) => {
-//     res.send("Inside articles page");
-// })
 
 router.post('/', async (req, res) => {
     const article = new Article({
@@ -20,8 +18,9 @@ router.post('/', async (req, res) => {
     try {
         await article.save();
         // res.redirect(`/articles/${article.id}`);
-        res.redirect(`/`);
+        res.redirect(`/articles`);
     } catch (e) {
+        console.log(e);
         res.render(`articles/new`, { article: article });
     }
 })
