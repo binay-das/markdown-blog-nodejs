@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/show.css">
 </head>
+
 <body>
     <div class="container">
-
-        <h1><%= article.title %></h1>
-        <h3><%= article.description %></h3>
+        <h1>
+            <%= article.title %>
+        </h1>
+        <h3>
+            <%= article.description %>
+        </h3>
         <h4><%- article.sanitisedHTML %></h4>
+
+        <div class="btns">
+            <a href="/articles"><button>All articles</button></a>
+            <a href="/articles/edit/<%= article.id %>"><button>Edit</button></a>
+        </div>
     </div>
-    <a href="/articles"><button>All articles</button></a>
-    <a href="/articles/edit/<%=article.slug%>"><button>Edit</button></a>
 </body>
+
 </html>

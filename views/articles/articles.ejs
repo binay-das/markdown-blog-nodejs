@@ -10,8 +10,11 @@
 
 <body>
     <div class="container">
-        <h1>MARK DOWN BLOG APP</h1>
-        <a href="http://localhost:8080/articles/new"><button>Add a New Blog</button></a>
+        <h1>All blogs</h1>
+        <% if (articles.length == 0) { %>
+            <h3>No blogs to show... click on the button below to add one</h3>
+        <% } %>
+        <a href="/articles/new"><button>Add a New Blog</button></a>
         <% articles.forEach((article)=> { %>
             <div class="card-body">
                 <h2 class="title">
@@ -26,11 +29,12 @@
                 <p class="markdown">
                     <%- article.sanitisedHTML %>
                 </p>
-                <!-- <a href="/articles/<%= article.id %>"><button>Read more</button></a> -->
-                <a href="/articles/<%= article.slug %>"><button>Read more</button></a>
-                <form action="/articles/<%=article.id%>?_method=DELETE" method="post">
-                    <button>Delete</button>
-                </form>
+                <div class="btns">
+                    <a href="/articles/<%= article.slug %>"><button class="read-more">Read more</button></a>
+                    <form action="/articles/<%=article.id%>?_method=DELETE" method="post">
+                        <button class="delete">Delete</button>
+                    </form>
+                </div>
             </div>
             <% }) %>
     </div>
