@@ -11,7 +11,9 @@
 
         <h1><%= article.title %></h1>
         <h3><%= article.description %></h3>
-        <h4><%= article.markdown %></h4>
+        <h4><%- article.sanitisedHTML %></h4>
     </div>
+    <a href="/articles"><button>All articles</button></a>
+    <a href="/articles/edit/<%=article.slug%>"><button>Edit</button></a>
 </body>
 </html>

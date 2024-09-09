@@ -4,22 +4,23 @@ const articleRouter = require('./routes/articles');
 const mongoose = require('mongoose');
 const path = require('path');
 const Article = require('./models/articles');
+const methodOverride = require('method-override');
 
 
 mongoose.connect('mongodb://localhost/blog');
 
-let articles = [
-    {
-        title: "Test title",
-        createdAt: new Date(),
-        description: "Test Description"
-    },
-    {
-        title: "Test title",
-        createdAt: new Date(),
-        description: "Test Description"
-    }
-];
+// let articles = [
+//     {
+//         title: "Test title",
+//         createdAt: new Date(),
+//         description: "Test Description"
+//     },
+//     {
+//         title: "Test title",
+//         createdAt: new Date(),
+//         description: "Test Description"
+//     }
+// ];
 
 
 
@@ -27,6 +28,7 @@ let articles = [
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(methodOverride('_method'));
 
 app.use('/articles', articleRouter);
 
@@ -37,7 +39,7 @@ app.get('/', (req, res) => {
 
 app.get('/articles', async(req, res) => {
     const articles = await Article.find().sort({ createdAt: 'desc' });
-    res.render('articles/articles', { articles })
+    res.render('articles/articles', { articles });
     // res.render("articles/articles", {articles});
 })
 

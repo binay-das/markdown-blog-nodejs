@@ -24,9 +24,13 @@
                     <%= article.description %>
                 </p>
                 <p class="markdown">
-                    <%= article.markdown %>
+                    <%- article.sanitisedHTML %>
                 </p>
-                <a href=""><button>Delete</button></a>
+                <!-- <a href="/articles/<%= article.id %>"><button>Read more</button></a> -->
+                <a href="/articles/<%= article.slug %>"><button>Read more</button></a>
+                <form action="/articles/<%=article.id%>?_method=DELETE" method="post">
+                    <button>Delete</button>
+                </form>
             </div>
             <% }) %>
     </div>
