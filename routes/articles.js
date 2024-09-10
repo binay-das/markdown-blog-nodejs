@@ -19,7 +19,7 @@ router.get('/:slug', async (req, res) => {
         slug: req.params.slug
     });
     if (article == null) {
-        req.redirect('/');
+        res.redirect('/');
     }
     res.render('articles/show', { article: article });
 })
@@ -56,5 +56,10 @@ function saveArticleAndRedirect(path) {
         }
     }
 }
+
+
+router.get('/about', (req, res) => {
+    res.render('articles/about');
+})
 
 module.exports = router;

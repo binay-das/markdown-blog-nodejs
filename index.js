@@ -6,24 +6,7 @@ const path = require('path');
 const Article = require('./models/articles');
 const methodOverride = require('method-override');
 
-
 mongoose.connect('mongodb://localhost/blog');
-
-// let articles = [
-//     {
-//         title: "Test title",
-//         createdAt: new Date(),
-//         description: "Test Description"
-//     },
-//     {
-//         title: "Test title",
-//         createdAt: new Date(),
-//         description: "Test Description"
-//     }
-// ];
-
-
-
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
