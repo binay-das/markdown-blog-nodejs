@@ -26,9 +26,7 @@
                 <p class="description">
                     <%= article.description %>
                 </p>
-                <p class="markdown">
-                    <%- article.sanitisedHTML %>
-                </p>
+                
                 <div class="btns">
                     <a href="/articles/<%= article.slug %>"><button class="read-more">Read more</button></a>
                     <a href="/articles/edit/<%= article.id %>"><button>Edit</button></a>
