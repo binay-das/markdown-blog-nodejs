@@ -4,7 +4,11 @@ const Article = require('./../models/articles');
 
 
 router.get('/new', (req, res) => {
-    res.render("articles/new");
+    res.render("articles/new", {
+
+        article: new Article()
+
+    });
 })
 
 
@@ -21,7 +25,11 @@ router.get('/:slug', async (req, res) => {
     if (article == null) {
         res.redirect('/');
     }
-    res.render('articles/show', { article: article });
+    res.render('articles/show', {
+        
+        article: article 
+    
+    });
 })
 
 router.delete('/:id', async (req, res) => {
@@ -31,10 +39,14 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const article = await Article.findById(req.params.id);
-    res.render('articles/edit', { article: article });
+    res.render('articles/edit', {
+         
+        article: article 
+    
+    });
 })
 
-router.put('/edit/:id', async(req, res, next) => {
+router.put('/:id', async(req, res, next) => {
     req.article = await Article.findById(req.params.id);
     next();
 }, saveArticleAndRedirect('new'))
@@ -52,7 +64,11 @@ function saveArticleAndRedirect(path) {
             res.redirect(`/articles/${article.slug}`);
         } catch (e) {
             console.log(e);
-            res.render(`articles/${path}`, { article: article });
+            res.render(`articles/${path}`, {
+                
+                article: article 
+            
+            });
         }
     }
 }
