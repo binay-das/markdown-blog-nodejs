@@ -61,7 +61,8 @@ function saveArticleAndRedirect(path) {
 
         try {
             await article.save();
-            res.redirect(`/articles/${article.slug}`);
+            // res.redirect(`/articles/${article.slug}`);
+            res.redirect(`/articles`);
         } catch (e) {
             console.log(e);
             res.render(`articles/${path}`, {
